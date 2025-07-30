@@ -1,7 +1,5 @@
+import os  # <- Make sure this is at the top
 from flask import Flask, request, jsonify
-from openai import OpenAI
-from gtts import gTTS
-import os
 
 app = Flask(__name__)
 
@@ -11,7 +9,14 @@ def home():
 
 @app.route("/process", methods=["POST"])
 def process_audio():
-    return jsonify({"status": "working..."})
+    data = request.json
+    text = data.get("text", "")
+    response = f"Processed: {text}"
+    return jsonify({
+        "reply": response,
+        "command": "turn_on_light"
+    })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Use environment PORT on Render
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
