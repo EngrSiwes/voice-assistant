@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 import os
 
-# Import sensor + output functions
-from sensors import sensors
-from outputs import outputs
+# Updated imports to match your current folder structure
+from sensors.sensor_module import sensors
+from outputs.device_control import outputs
 
 app = Flask(__name__)
 
@@ -13,8 +13,8 @@ def index():
         "endpoints": {
             "/chat": "POST JSON {\"message\": \"your text\"} to chat with AI",
             "/command": "POST JSON {\"command\": \"turn_on_fan\"} to control device",
-            "/debug_env": "GET to check if environment variables are loaded",
-            "/sensors": "GET to read all sensor values"
+            "/sensors": "GET to read all sensor values",
+            "/debug_env": "GET to check if environment variables are loaded"
         },
         "message": "✅ Voice Assistant API is running!"
     })
