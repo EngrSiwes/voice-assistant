@@ -1,9 +1,8 @@
 from flask import Flask, request, jsonify
 import os
 
-# Updated imports to match your current folder structure
-from sensors.sensor_module import sensors
-from outputs.device_control import outputs
+from sensors import sensors
+from outputs import outputs
 
 app = Flask(__name__)
 
